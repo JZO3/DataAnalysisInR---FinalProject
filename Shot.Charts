@@ -1,1 +1,23 @@
 
+# install package, package allows us to analyse and 
+#manipulate basketball data
+library(BasketballAnalyzeR)
+
+# Extracts our data and creates a data frame, our data is 
+# from the 2017/2018 season
+PbP <- PbPmanipulation(PbP.BDB)
+#check structure of data
+str(PbP)
+
+subdata <- subset(PbP, player=="Stephen Curry")
+subdata$xx <- subdata$original_x/10
+subdata$yy <- subdata$original_y/10-41.75
+
+#creates a scatter plot of the shot data for a given player 
+#also changes the colour of ourn points to green 
+shotchart(data=subdata, x="xx", y="yy", scatter = T,
+          pt.col = "green")
+#defines the result of a shot as a make/miss
+shotchart(data=subdata, x="xx", y="yy", scatter = T,
+          z = 'result',)
+          
