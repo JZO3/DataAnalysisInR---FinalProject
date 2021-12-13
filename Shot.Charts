@@ -1,4 +1,3 @@
-
 # install package, package allows us to analyse and 
 #manipulate basketball data
 library(BasketballAnalyzeR)
