@@ -8,15 +8,23 @@ PbP <- PbPmanipulation(PbP.BDB)
 #check structure of data
 str(PbP)
 
-subdata <- subset(PbP, player=="Stephen Curry")
-subdata$xx <- subdata$original_x/10
-subdata$yy <- subdata$original_y/10-41.75
+Steph.Curry.Shooting <- subset(PbP, player=="Stephen Curry")
+Steph.Curry.Shooting$xx <- Steph.Curry.Shooting$original_x/10
+Steph.Curry.Shooting$yy <- Steph.Curry.Shooting$original_y/10-41.75
 
 #creates a scatter plot of the shot data for a given player 
-#also changes the colour of ourn points to green 
-shotchart(data=subdata, x="xx", y="yy", scatter = T,
+shotchart(data=Steph.Curry.Shooting, x="xx", y="yy", scatter = T,
           pt.col = "green")
+title(shotchart("Steph Curry"))
+
 #defines the result of a shot as a make/miss
-shotchart(data=subdata, x="xx", y="yy", scatter = T,
-          z = 'result',)
-          
+shotchart(data=Steph.Curry.Shooting, x="xx", y="yy", scatter = T,
+          z = 'result')
+
+#Expanding our model 
+shotchart(data=Steph.Curry.Shooting, x="xx", y="yy", scatter = F,
+          num.sect = 5,
+          type = 'sectors', 
+          z = 'playlength',
+          result = 'result')
+ 
