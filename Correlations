@@ -1,5 +1,6 @@
 
 # Setup -------------------------------------------------------------------
+
 library(BasketballAnalyzeR)
 library(corrplot)
 Team.Data <- Tbox
@@ -8,6 +9,9 @@ str(Team.Data)
 # assign variable to be plotted in scatter plots 
 y <- Team.Data$W
 x <- Team.Data$P3M
+g <- Team.Data$P2M
+h <- Team.Data$P2A
+r <- Team.Data$P3A
 a <- Team.Data$AST
 z <- Team.Data$TOV
 v <- Team.Data$P2p
@@ -22,10 +26,46 @@ plot(x,y, main = "Regression for 3 Pointers Made (3PM) on Wins",
      ylab = "Wins",
      frame = FALSE,)
 
-abline(lm(w ~ x))
+abline(lm(y ~ x))
                         
 # Run a correlation test to return values 
 cor.test(Team.Data$W, Team.Data$P3M)
+
+# 2PM ~ Wins --------------------------------------------------------------
+
+plot(g,y, main = "Regression for 2 Pointers Made (2PM) on Wins",
+     xlab = "2PM",
+     ylab = "Wins",
+     frame = FALSE,)
+
+abline(lm(y ~ g))
+
+# Run a correlation test to return values 
+cor.test(Team.Data$W, Team.Data$P2M)
+
+# 2PA ~ Wins --------------------------------------------------------------
+
+plot(h,y, main = "Regression for 2 Pointers Attempted (2PA) on Wins",
+     xlab = "2PA",
+     ylab = "Wins",
+     frame = FALSE,)
+
+abline(lm(y ~ g))
+
+# Run a correlation test to return values 
+cor.test(Team.Data$W, Team.Data$P2A)
+
+# 3PA ~ Wins --------------------------------------------------------------
+
+plot(r,y, main = "Regression for 3 Pointers Attempted (3PA) on Wins",
+     xlab = "3PA",
+     ylab = "Wins",
+     frame = FALSE,)
+
+abline(lm(y ~ r))
+
+# Run a correlation test to return values 
+cor.test(Team.Data$W, Team.Data$P3A)
 
 # AST ~ Wins --------------------------------------------------------------
 
@@ -40,6 +80,7 @@ abline(lm(y ~ a))
 
 # Run a correlation test to return values 
 cor.test(Team.Data$W, Team.Data$AST)
+
 # TOV ~ Wins --------------------------------------------------------------
 
 #Plotting TOV and Wins w/ axis labels, 
@@ -54,9 +95,8 @@ abline(lm(y ~ z))
 # Run a correlation test to return values 
 cor.test(Team.Data$W, Team.Data$TOV)
 
-
-
 # 2P% ~ Wins --------------------------------------------------------------
+
 #Plotting 2- Pointer % and Wins w/ axis labels, 
 # title, also removing the frame
 plot(v,y, main = "Regression for 2-Point Shooting Percentage (2PT%) on Wins",
@@ -69,10 +109,6 @@ abline(lm(y ~ v))
 # Run a correlation test to return values 
 cor.test(Team.Data$W, Team.Data$P2p)
 
-
-
-
-
 # 3P% ~ Wins --------------------------------------------------------------
 
 plot(q,y, main = "Regression for 3-Point Shooting Percentage (3PT%) on Wins",
@@ -82,6 +118,4 @@ plot(q,y, main = "Regression for 3-Point Shooting Percentage (3PT%) on Wins",
 
 abline(lm(y ~ q))
 
-# Run a correlation test to return values 
-cor.test(Team.Data$W, Team.Data$P3p)
 
