@@ -1,30 +1,42 @@
 # install package, package allows us to analyse and 
-#manipulate basketball data
+# manipulate basketball data
 library(BasketballAnalyzeR)
 
-# Extracts our data and creates a data frame, our data is 
-# from the 2017/2018 season
+# Extracts our data from the BasketballAnalyzeR package, and 
+# formats it as a data frame  a data frame, 
+# Our data is from the 2017/2018 season
+# PbP <- play by play, BDB <- Big Data Bob (creator of the dataset)
 PbP <- PbPmanipulation(PbP.BDB)
-#check structure of data
-str(PbP)
 
+# check structure of our data
+str(PbP)
+  
+# selecting a subset of data to look at (i.e. which player)  
 Steph.Curry.Shooting <- subset(PbP, player=="Stephen Curry")
+
+# set dimensions for the halfcourt shotchart 
+# based on NBA court measurements
 Steph.Curry.Shooting$xx <- Steph.Curry.Shooting$original_x/10
 Steph.Curry.Shooting$yy <- Steph.Curry.Shooting$original_y/10-41.75
 
-#creates a scatter plot of the shot data for a given player 
+# creates our shotchart for a given player 
 shotchart(data=Steph.Curry.Shooting, x="xx", y="yy", scatter = T,
           pt.col = "green")
 title(shotchart("Steph Curry"))
 
-#defines the result of a shot as a make/miss
+# defines the result of a shot as a make/miss to  
+# create a new shot chart
 shotchart(data=Steph.Curry.Shooting, x="xx", y="yy", scatter = T,
           z = 'result')
 
-#Expanding our model 
+# expanding our model to add sections of the court, and 
+# incorporate how early/late in the play he took the shot at,
+# while also adding make/miss result as a percentage by changing 
+# scatter = F
 shotchart(data=Steph.Curry.Shooting, x="xx", y="yy", scatter = F,
           num.sect = 5,
           type = 'sectors', 
           z = 'playlength',
-          result = 'result')
+          result = 'result') 
+
  
