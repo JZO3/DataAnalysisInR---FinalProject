@@ -1,0 +1,87 @@
+
+# Setup -------------------------------------------------------------------
+library(BasketballAnalyzeR)
+library(corrplot)
+Team.Data <- Tbox
+str(Team.Data)
+
+# assign variable to be plotted in scatter plots 
+y <- Team.Data$W
+x <- Team.Data$P3M
+a <- Team.Data$AST
+z <- Team.Data$TOV
+v <- Team.Data$P2p
+q <- Team.Data$P3p
+
+# 3PM ~ Wins --------------------------------------------------------------
+
+#Plotting 3PM and Wins w/ axis labels, 
+# title, also removing the frame
+plot(x,y, main = "Regression for 3 Pointers Made (3PM) on Wins",
+     xlab = "3PM",
+     ylab = "Wins",
+     frame = FALSE,)
+
+abline(lm(w ~ x))
+                        
+# Run a correlation test to return values 
+cor.test(Team.Data$W, Team.Data$P3M)
+
+# AST ~ Wins --------------------------------------------------------------
+
+#Plotting AST and Wins w/ axis labels, 
+# title, also removing the frame
+plot(a,y, main = "Regression for Assists (AST) on Wins",
+     xlab = "AST",
+     ylab = "Wins",
+     frame = FALSE,)
+
+abline(lm(y ~ a))
+
+# Run a correlation test to return values 
+cor.test(Team.Data$W, Team.Data$AST)
+# TOV ~ Wins --------------------------------------------------------------
+
+#Plotting TOV and Wins w/ axis labels, 
+# title, also removing the frame
+plot(z,y, main = "Regression for Turnovers on Wins",
+     xlab = "TOV",
+     ylab = "Wins",
+     frame = FALSE,)
+
+abline(lm(y ~ z))
+
+# Run a correlation test to return values 
+cor.test(Team.Data$W, Team.Data$TOV)
+
+
+
+# 2P% ~ Wins --------------------------------------------------------------
+#Plotting 2- Pointer % and Wins w/ axis labels, 
+# title, also removing the frame
+plot(v,y, main = "Regression for 2-Point Shooting Percentage (2PT%) on Wins",
+     xlab = "2PT%",
+     ylab = "Wins",
+     frame = FALSE,)
+
+abline(lm(y ~ v))
+
+# Run a correlation test to return values 
+cor.test(Team.Data$W, Team.Data$P2p)
+
+
+
+
+
+# 3P% ~ Wins --------------------------------------------------------------
+
+plot(q,y, main = "Regression for 3-Point Shooting Percentage (3PT%) on Wins",
+     xlab = "3PT%",
+     ylab = "Wins",
+     frame = FALSE,)
+
+abline(lm(y ~ q))
+
+# Run a correlation test to return values 
+cor.test(Team.Data$W, Team.Data$P3p)
+
