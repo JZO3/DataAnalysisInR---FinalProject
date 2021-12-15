@@ -1,6 +1,6 @@
 
 # Setup -------------------------------------------------------------------
-
+# install libraries, extract and inspect data
 library(BasketballAnalyzeR)
 library(corrplot)
 Team.Data <- Tbox
